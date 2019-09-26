@@ -10,14 +10,14 @@
                     <div class="card-body">
                         <div class="form-group">
                             <label for="username" class="bmd-label-floating">Username</label>
-                            <input type="text" class="form-control" v-model="input.username">
+                            <input type="text" class="form-control" id="username">
                         </div>
                         <div class="form-group">
                             <label for="pwd" class="bmd-label-floating">Password</label>
-                            <input type="password" class="form-control" v-model="input.password">
+                            <input type="password" class="form-control" id="password">
                         </div>
                         <center>
-                            <button type="button" class="btn btn-outline-success login-btn" @click="login()">Login</button>
+                            <button type="button" class="btn btn-outline-success login-btn" >Login</button>
                         </center>
                     </div>
                 </div>
@@ -28,26 +28,28 @@
 </template>
 
 <script>
- 
-    export default {
-        name: 'Login',
-        data() {
-            return {
-                input: {
-                    username: "",
-                    password: ""
-                }
+        //eslint-disable-next-line
+        /*eslint-disable*/
+        window.$ = require("jquery");
+        window.JQuery = require("jquery");
+        $(document).ready(function() {
+        $("input").attr("required", true);
+        
+        $("#login-btn").click(function() {
+            let input = $("#username").val();
+            let pass = $("#password").val();
+            $("#password").attr({
+            pattern: "[A-Za-z]{8,}",
+            title: "This field is required"
+            });
+            if (input != "" && pass != "") {
+            console.log($("#username").val());
+            console.log($("#password").val());
             }
-        },
-        methods: {
-            login() {
-                if(this.input.username != "" && this.input.password != "") {
-                } else {
-                    alert("Incorrect");
-                }
-            }
-        }
-    }
+        });
+
+        
+        });
 </script>
 
 
